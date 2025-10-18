@@ -11,10 +11,16 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          echo "Base branch: ${{ github.base_ref }}"
-          git fetch --no-tags --depth=2 origin "${{ github.base_ref }}":"${{ github.base_ref }}"
-          echo "Changed files vs base:"
-          CHANGED=$(git diff --name-only "${{ github.base_ref }}"...HEAD)
+          BASE_SHA='${{ github.event.pull_request.base.sha }}'
+          HEAD_SHA='${{ github.event.pull_request.head.sha }}'
+          echo "Base SHA: $BASE_SHA"
+          echo "Head SHA: $HEAD_SHA"
+
+          # fetch the exact SHAs with minimal history to ensure diff works
+          git fetch --no-tags --depth=1 origin "$BASE_SHA" "$HEAD_SHA"
+
+          echo "Changed files (base..head):"
+          CHANGED=$(git diff --name-only "$BASE_SHA".."$HEAD_SHA")
           echo "$CHANGED"
 
           if echo "$CHANGED" | grep -q '^ops/progress.yaml$'; then
