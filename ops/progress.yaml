@@ -9,3 +9,5 @@ next_actions:
   - "docs: keep PROJECT.md in sync with ops/progress.yaml"
   - "ci: verify consistency workflow with a test PR"
 risks: []
+
+# ci-fail test: changed only progress.yaml
