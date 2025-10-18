@@ -107,3 +107,5 @@ apps/web と apps/api がローカルで起動（/ と /healthz が見える）�
 ⏭ 次の一手（Windsurfが終えたら直後にやること）
 端末で：pnpm i → docker compose up -d → pnpm dev:web / pnpm dev:api
 画面が見えたら、フェーズB（API CRUD・Zod・監査ログ）へ進むようWindsurfに指示。
+
+- CI整合テスト: progress.yamlの変更に追随
