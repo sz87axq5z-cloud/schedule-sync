@@ -110,3 +110,5 @@ apps/web と apps/api がローカルで起動（/ と /healthz が見える）�
 
 - CI整合テスト: progress.yamlの変更に追随
 
+
+# retrigger after workflow fix merged
