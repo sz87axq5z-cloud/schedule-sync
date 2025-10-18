@@ -1,0 +1,11 @@
+phase: "A"
+completed_checklist:
+  - "web: dev server up"
+  - "api: /healthz implemented"
+  - "api: /admin/progress implemented (60s cache)"
+  - "web: /admin/progress UI (server component)"
+next_actions:
+  - "monorepo: use pnpm for dev commands (npx pnpm@9 --filter)"
+  - "docs: keep PROJECT.md in sync with ops/progress.yaml"
+  - "ci: verify consistency workflow with a test PR"
+risks: []

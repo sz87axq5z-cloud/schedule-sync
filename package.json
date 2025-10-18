@@ -1,0 +1,17 @@
+{
+  "name": "mono-schedule-sync",
+  "private": true,
+  "packageManager": "pnpm@9.0.0",
+  "scripts": {
+    "dev:web": "pnpm --filter web dev",
+    "dev:api": "pnpm --filter api dev",
+    "dev:all": "turbo run dev --parallel",
+    "build": "turbo run build",
+    "clean": "rimraf node_modules **/node_modules",
+    "progress:now": "node ops/scripts/progress-now.cjs"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.6",
+    "rimraf": "^5.0.5"
+  }
+}

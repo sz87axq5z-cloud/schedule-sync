@@ -1,0 +1,27 @@
+name: Progress Consistency
+on:
+  pull_request:
+    branches: [ main ]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check ops/progress.yaml and PROJECT.md consistency
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "Base branch: ${{ github.base_ref }}"
+          git fetch --no-tags --depth=2 origin "${{ github.base_ref }}":"${{ github.base_ref }}"
+          echo "Changed files vs base:"
+          CHANGED=$(git diff --name-only "${{ github.base_ref }}"...HEAD)
+          echo "$CHANGED"
+
+          if echo "$CHANGED" | grep -q '^ops/progress.yaml$'; then
+            if ! echo "$CHANGED" | grep -q '^PROJECT.md$'; then
+              echo "::error::ops/progress.yaml changed but PROJECT.md not updated. Keep single-source of truth."
+              exit 1
+            fi
+          fi
+
+          echo "Consistency check passed."

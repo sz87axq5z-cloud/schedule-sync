@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Noto+Sans+JP:wght@400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --paper: #ffffff;
+  --paper-2: #f5f6f7;
+  --ink: #111111;
+  --ink-2: #444444;
+  --border: #e5e7eb;
+}
+
+.dark {
+  --paper: #111111;
+  --paper-2: #222222;
+  --ink: #ffffff;
+  --ink-2: #e5e7eb;
+  --border: #444444;
+}
+
+html { font-family: Inter, "Noto Sans JP", system-ui, -apple-system, sans-serif; }
+
+* { box-sizing: border-box; }
+
+body { background: var(--paper); color: var(--ink); }
+
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
