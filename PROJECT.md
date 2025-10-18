@@ -109,3 +109,4 @@ apps/web と apps/api がローカルで起動（/ と /healthz が見える）�
 画面が見えたら、フェーズB（API CRUD・Zod・監査ログ）へ進むようWindsurfに指示。
 
 - CI整合テスト: progress.yamlの変更に追随
+
