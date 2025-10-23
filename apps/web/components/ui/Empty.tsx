@@ -1,10 +1,12 @@
-type Props = { title: string; hint?: string }
+import { cn } from '@/lib/utils'
 
-export default function Empty({ title, hint }: Props) {
+type Props = { title: string; hint?: string; className?: string }
+
+export default function Empty({ title, hint, className }: Props) {
   return (
-    <div className="rounded-2xl border border-dashed border-border p-8 text-center">
-      <div className="text-sm font-medium mb-1">{title}</div>
-      {hint && <div className="text-sm text-ink-2">{hint}</div>}
+    <div className={cn('rounded-2xl border border-dashed border-border p-section text-center', className)}>
+      <div className="text-body font-medium mb-element2">{title}</div>
+      {hint && <div className="text-body text-ink-2">{hint}</div>}
     </div>
   )
 }

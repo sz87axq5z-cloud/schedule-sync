@@ -4,10 +4,18 @@ completed_checklist:
   - "api: /healthz implemented"
   - "api: /admin/progress implemented (60s cache)"
   - "web: /admin/progress UI (server component)"
+  - "web: shadcn/ui base setup (components.json, cn utils)"
+  - "web: Toaster wired into app layout"
+  - "web: Button/StatusBadge refactored with cva variants"
+  - "web: Input/Label added; FormField internal refactor"
+  - "web: Dialog/Tooltip/Select components added (Radix based)"
+  - "web: /admin/progress integrated Tooltip/Dialog/Select + Phase filter"
+  - "web: design tokens extended (spacing/typography/shadow) and applied"
+  - "web: Lighthouse A11y score 100 on /admin/progress"
 next_actions:
-  - "monorepo: use pnpm for dev commands (npx pnpm@9 --filter)"
-  - "docs: keep PROJECT.md in sync with ops/progress.yaml"
-  - "ci: verify consistency workflow with a test PR"
+  - "docs: keep PROJECT.md in sync with ops/progress.yaml (this PR updates both)"
+  - "ui: roll out tokens/components to upcoming pages"
+  - "ci: optionally add a11y check in workflow (log-only)"
 risks: []
 
 # ci-pass test: keep PROJECT.md in sync

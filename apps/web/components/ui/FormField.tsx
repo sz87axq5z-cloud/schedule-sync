@@ -1,5 +1,7 @@
 import { InputHTMLAttributes } from 'react'
-import clsx from 'clsx'
+import { cn } from '@/lib/utils'
+import Input from '@/components/ui/Input'
+import Label from '@/components/ui/Label'
 
 type Props = {
   id: string
@@ -15,19 +17,15 @@ export default function FormField({ id, label, hint, error, className, required,
   if (error) describedBy.push(`${id}-error`)
 
   return (
-    <div className={clsx('space-y-2', className)}>
-      <label htmlFor={id} className="block text-sm font-medium text-ink">
+    <div className={cn('space-y-2', className)}>
+      <Label htmlFor={id} className="block text-sm font-medium text-ink">
         {label}{required ? ' *' : ''}
-      </label>
-      <input
+      </Label>
+      <Input
         id={id}
         aria-describedby={describedBy.join(' ') || undefined}
         aria-invalid={!!error || undefined}
         required={required}
-        className={clsx(
-          'w-full rounded-2xl border bg-paper px-3 py-2 text-sm text-ink placeholder:text-ink-2',
-          'border-border focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink'
-        )}
         {...inputProps}
       />
       {hint && !error && (
