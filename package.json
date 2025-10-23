@@ -8,7 +8,8 @@
     "dev:all": "turbo run dev --parallel",
     "build": "turbo run build",
     "clean": "rimraf node_modules **/node_modules",
-    "progress:now": "node ops/scripts/progress-now.cjs"
+    "progress:now": "node ops/scripts/progress-now.cjs",
+    "a11y:progress": "npx -y lighthouse http://localhost:3000/admin/progress --only-categories=accessibility --quiet --chrome-flags='--headless=new' --output=json --output-path=stdout | node ops/scripts/parse-lh-a11y.cjs"
   },
   "devDependencies": {
     "turbo": "^2.0.6",

@@ -107,3 +107,31 @@ apps/web と apps/api がローカルで起動（/ と /healthz が見える）�
 ⏭ 次の一手（Windsurfが終えたら直後にやること）
 端末で：pnpm i → docker compose up -d → pnpm dev:web / pnpm dev:api
 画面が見えたら、フェーズB（API CRUD・Zod・監査ログ）へ進むようWindsurfに指示。
+
+- CI整合テスト: progress.yamlの変更に追随
+
+
+# retrigger after workflow fix merged
+
+---
+
+## 現在の進捗スナップショット（ops/progress.yaml と同期）
+
+- フェーズ: A
+- 完了項目:
+  - web: dev server up
+  - api: /healthz implemented
+  - api: /admin/progress implemented (60s cache)
+  - web: /admin/progress UI (server component)
+  - web: shadcn/ui base setup (components.json, cn utils)
+  - web: Toaster wired into app layout
+  - web: Button/StatusBadge refactored with cva variants
+  - web: Input/Label added; FormField internal refactor
+  - web: Dialog/Tooltip/Select components added (Radix based)
+  - web: /admin/progress integrated Tooltip/Dialog/Select + Phase filter
+  - web: design tokens extended (spacing/typography/shadow) and applied
+  - web: Lighthouse A11y score 100 on /admin/progress
+- 次の一手:
+  - docs: keep PROJECT.md in sync with ops/progress.yaml (this PR updates both)
+  - ui: roll out tokens/components to upcoming pages
+  - ci: optionally add a11y check in workflow (log-only)
