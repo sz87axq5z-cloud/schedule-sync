@@ -1,0 +1,59 @@
+// Prisma schema for schedule-sync API
+// Database: PostgreSQL
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum SessionStatus {
+  scheduled
+  live
+  finished
+}
+
+enum AuditAction {
+  create
+  update
+  delete
+}
+
+enum AuditResource {
+  session
+}
+
+model Session {
+  id        String        @id @default(cuid())
+  title     String
+  startsAt  DateTime
+  endsAt    DateTime
+  status    SessionStatus @default(scheduled)
+  teacher   String?
+  memo      String?
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  @@index([startsAt])
+  @@index([status])
+}
+
+model AuditLog {
+  id         String        @id @default(cuid())
+  at         DateTime
+  actor      String?
+  ip         String?
+  ua         String?
+  action     AuditAction
+  resource   AuditResource
+  resourceId String
+  before     Json?
+  after      Json?
+  createdAt  DateTime      @default(now())
+
+  @@index([at])
+  @@index([resource, resourceId])
+}

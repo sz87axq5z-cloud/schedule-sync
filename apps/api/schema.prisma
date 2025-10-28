@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Session {
+  id        String        @id @default(cuid())
+  title     String
+  startsAt  DateTime
+  endsAt    DateTime
+  teacher   String?
+  memo      String?
+  // Google Calendar integration (optional)
+  gcalEventId String?
+  gcalAdminEventId String?
+  calendarId  String?
+  syncedAt    DateTime?
+  // Owner (Google OAuth user) for per-user sync
+  ownerUserId String?
+  owner       User?        @relation(fields: [ownerUserId], references: [id])
+  // indexes omitted in current DB shape
+}
+
+model User {
+  id            String   @id @default(cuid())
+  googleUserId  String   @unique
+  email         String   @unique
+  accessToken   String?
+  refreshToken  String?
+  tokenExpiry   DateTime?
+  sessions      Session[]
+}
+model AuditLog {
+  id         String        @id @default(cuid())
+  at         DateTime      @default(now())
+  actor      String?
+  ip         String?
+  ua         String?
+  action     String
+  resource   String
+  resourceId String
+  before     Json?
+  after      Json?
+}

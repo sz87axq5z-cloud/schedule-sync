@@ -29,6 +29,18 @@ pnpm-debug.log*
 .env
 .env.*
 !.env.example
+apps/web/.env.local
+apps/web/.env*
+apps/api/.env
+apps/api/.env*
+
+# Private keys
+*.pem
+*.key
+
+# Cache
+.cache/
+**/.cache/
 
 # Editor
 .vscode/

@@ -12,7 +12,8 @@
     "a11y:progress": "npx -y lighthouse http://localhost:3000/admin/progress --only-categories=accessibility --quiet --chrome-flags='--headless=new' --output=json --output-path=stdout | node ops/scripts/parse-lh-a11y.cjs"
   },
   "devDependencies": {
-    "turbo": "^2.0.6",
-    "rimraf": "^5.0.5"
+    "prisma": "^6.18.0",
+    "rimraf": "^5.0.5",
+    "turbo": "^2.0.6"
   }
 }
